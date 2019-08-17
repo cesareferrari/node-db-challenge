@@ -6,7 +6,11 @@ module.exports = {
 }
 
 async function all() {
-  return await db('projects');
+  const projects = await db('projects');
+  projects.forEach(project => {
+    project.completed ? project.completed = true : project.completed = false;
+  })
+  return projects;
 }
 
 async function create(projectData) {
