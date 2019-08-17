@@ -14,7 +14,18 @@ router.get('/', async (req, res) => {
       res.status(404).json({message: "No projects available"});
     }
   } catch (err) {
-    res.status(500).json({message: "Error retrieving projects"})
+    res.status(500).json({message: "Error retrieving projects", error: err})
+  }
+});
+
+router.post('/', async (req, res) => {
+  const projectData = req.body;
+
+  try {
+    const project = await Project.create(projectData);
+    res.status(201).json(project);
+  } catch (err) {
+    res.status(500).json({message: "Error saving project", error: err})
   }
 });
 
