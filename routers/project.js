@@ -6,7 +6,16 @@ const Project = require('../models/project.js');
 // GET /api/projects/
 router.get('/', async (req, res) => {
   const projects = await Project.all();
-  res.status(200).json(projects);
+
+  try {
+    if (projects && projects.length > 0) {
+      res.status(200).json(projects);
+    } else {
+      res.status(404).json({message: "No projects available"});
+    }
+  } catch (err) {
+    res.status(500).json({message: "Error retrieving projects"})
+  }
 });
 
 module.exports = router;
