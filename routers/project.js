@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
+const Project = require('../models/project.js');
 
-const db = require('../data/db-config.js');
 
 // GET /api/projects/
 router.get('/', async (req, res) => {
-  const projects = await db('projects');
+  const projects = await Project.all();
   res.status(200).json(projects);
 });
 
