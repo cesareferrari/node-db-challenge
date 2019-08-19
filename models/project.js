@@ -3,7 +3,9 @@ const Helper = require('../helpers/project-helper.js');
 
 module.exports = {
   all,
-  create
+  create,
+  find,
+  addTask
 }
 
 async function all() {
@@ -15,4 +17,12 @@ async function all() {
 async function create(projectData) {
   return await db('projects').insert(projectData);
 }
+
+async function find(id) {
+  db('projects').where({id});
+};
+
+async function addTask(taskData) {
+  return await db('tasks').insert(taskData);
+};
 

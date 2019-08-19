@@ -12,4 +12,6 @@ async function all() {
   return tasks;
 };
 
-function create(taskData) {};
+async function create(taskData) {
+  return await db('tasks').insert(taskData);
+};
