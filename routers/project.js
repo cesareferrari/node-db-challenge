@@ -18,6 +18,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+// POST /api/projects/
 router.post('/', async (req, res) => {
   const projectData = req.body;
 
